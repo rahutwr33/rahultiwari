@@ -97,18 +97,48 @@
   <script src="js/jquery.min.js"></script>
   <script>
     function onScroll() {
-      if ($(this).scrollTop() == 0) {
-        $("header").removeClass("nav-up").addClass("nav-down")
-        $("header").addClass("reachedTop")
+      var scrollTop = $(this).scrollTop();
+      console.log('Scroll position:', scrollTop);
+
+      if (scrollTop <= 10) {
+        $("header").removeClass("nav-up").addClass("nav-down");
+        $("header").addClass("reachedTop");
+        console.log('Header should be visible');
       } else {
-        $("header").removeClass("nav-down").addClass("nav-up")
-        $("header").removeClass("reachedTop")
+        $("header").removeClass("nav-down").addClass("nav-up");
+        $("header").removeClass("reachedTop");
+        console.log('Header should be hidden');
       }
     }
+
+    // Initialize on page load
+    $(document).ready(function () {
+      onScroll();
+
+      // Hamburger menu functionality
+      $('#hamburger-menu').click(function () {
+        $(this).toggleClass('active');
+        $('#main-menu').toggleClass('active');
+      });
+
+      // Close menu when clicking on a menu item
+      $('#main-menu a').click(function () {
+        $('#hamburger-menu').removeClass('active');
+        $('#main-menu').removeClass('active');
+      });
+
+      // Close menu when clicking outside
+      $(document).click(function (event) {
+        if (!$(event.target).closest('#hamburger-menu, #main-menu').length) {
+          $('#hamburger-menu').removeClass('active');
+          $('#main-menu').removeClass('active');
+        }
+      });
+    });
   </script>
 </head>
 
-<body onscroll="onScroll()">
+<body onscroll="onScroll()" ontouchmove="onScroll()">
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TBHXG7D" height="0" width="0"
       style="display:none;visibility:hidden"></iframe></noscript>
@@ -117,10 +147,18 @@
     <div class="wrapper" id="wrapper">
       <div class="row">
         <div class="small-12 large-12 columns alignCenter">
-          <ul class="menu">
+          <!-- Hamburger Menu Button -->
+          <div class="hamburger-menu" id="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <ul class="menu" id="main-menu">
             <li><a href="/">Home</a></li>
             <li><a href="#me">about</a></li>
             <li><a href="#myskills">skills</a></li>
+            <li><a href="#experience">experience</a></li>
             <li><a href="./family-tree.html">Family Tree</a></li>
             <li><a target="_blank" href="./travel.html">Gallary</a></li>
             <li><a href="#coffeewithme">coffee with me</a></li>
@@ -282,6 +320,81 @@
     </div>
   </section>
 
+  <hr class="num">
+  <section class="experience" id="experience">
+    <div class="row alignCenter">
+      <h2 class="cmnstl">Professional Experience.</h2>
+      <div class="experience-timeline">
+        <div class="experience-item">
+          <div class="experience-content">
+            <div class="experience-header">
+              <h3 class="job-title">Software Development Engineer 4</h3>
+              <span class="job-type">Full-time</span>
+            </div>
+            <h4 class="company-name">IQVIA</h4>
+            <p class="job-location">📍 New Delhi</p>
+            <ul class="job-responsibilities">
+              <li>Leading complex software development initiatives and engineering solutions</li>
+              <li>Architecting scalable systems and managing high-impact projects</li>
+              <li>Driving technical excellence and innovation in software development</li>
+              <li>Mentoring junior developers and contributing to organizational growth</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="experience-item">
+          <div class="experience-content">
+            <div class="experience-header">
+              <h3 class="job-title">Senior Software Engineer</h3>
+              <span class="job-type">Full-time</span>
+            </div>
+            <h4 class="company-name">FIRMINIQ</h4>
+            <p class="job-location">📍 Chandigarh Area, India</p>
+            <ul class="job-responsibilities">
+              <li>Developed and maintained enterprise-level software solutions</li>
+              <li>Led technical architecture decisions and code quality initiatives</li>
+              <li>Collaborated with cross-functional teams on complex projects</li>
+              <li>Implemented best practices for software development and deployment</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="experience-item">
+          <div class="experience-content">
+            <div class="experience-header">
+              <h3 class="job-title">Mean Stack Developer</h3>
+              <span class="job-type">Full-time</span>
+            </div>
+            <h4 class="company-name">RV Technologies Softwares Pvt. Ltd</h4>
+            <p class="job-location">📍 Mohali, Punjab</p>
+            <ul class="job-responsibilities">
+              <li>Built full-stack applications using MongoDB, Express.js, Angular, and Node.js</li>
+              <li>Developed RESTful APIs and integrated frontend-backend systems</li>
+              <li>Implemented responsive user interfaces and optimized application performance</li>
+              <li>Collaborated with design teams to deliver user-centric solutions</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="experience-item">
+          <div class="experience-content">
+            <div class="experience-header">
+              <h3 class="job-title">Associate Software Trainee</h3>
+              <span class="job-type">Full-time · On-site</span>
+            </div>
+            <h4 class="company-name">smartData Enterprises Inc.</h4>
+            <p class="job-location">📍 Nagpur Area, India</p>
+            <ul class="job-responsibilities">
+              <li>Learned software development fundamentals and best practices</li>
+              <li>Contributed to development projects under senior developer guidance</li>
+              <li>Participated in code reviews and quality assurance processes</li>
+              <li>Gained hands-on experience with various technologies and frameworks</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <hr class="num">
   <section class="utilities" id="utilities">

@@ -379,7 +379,7 @@ ul.menu {
 ul.menu li {
   list-style: none;
   display: inline-block;
-  margin-left: 50px;
+  margin-left: 40px;
 }
 
 ul.menu li a {
@@ -1057,8 +1057,6 @@ hr {
   border: 0px solid !important;
   border-color: #c0c0c0;
 }
-
-
 
 @media only screen and (max-width: 64em) {
   .hamburger-menu {

@@ -115,6 +115,29 @@
                 $("header").removeClass("reachedTop")
             }
         }
+        $(document).ready(function () {
+            onScroll();
+
+            // Hamburger menu functionality
+            $('#hamburger-menu').click(function () {
+                $(this).toggleClass('active');
+                $('#main-menu').toggleClass('active');
+            });
+
+            // Close menu when clicking on a menu item
+            $('#main-menu a').click(function () {
+                $('#hamburger-menu').removeClass('active');
+                $('#main-menu').removeClass('active');
+            });
+
+            // Close menu when clicking outside
+            $(document).click(function (event) {
+                if (!$(event.target).closest('#hamburger-menu, #main-menu').length) {
+                    $('#hamburger-menu').removeClass('active');
+                    $('#main-menu').removeClass('active');
+                }
+            });
+        });
     </script>
 </head>
 
@@ -127,7 +150,12 @@
         <div class="wrapper" id="wrapper">
             <div class="row">
                 <div class="small-12 large-12 columns alignCenter">
-                    <ul class="menu">
+                    <div class="hamburger-menu" id="hamburger-menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <ul class="menu" id="main-menu">
                         <li><a href="/">Home</a></li>
                         <li><a href="#me">about</a></li>
                         <li><a href="#myskills">skills</a></li>
